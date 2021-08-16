@@ -91,7 +91,7 @@
         <a
           style="--navD: 0.4s"
           class="navBtn"
-          href="https://discord.gg/aztyaceuY2"
+          href="https://discord.gg/Pb7pBhAySt"
           target="_blank"
           >Join Discord</a
         >
@@ -103,16 +103,9 @@
       <section class="login signup">
         <form action="/signup">
           <h1>Sign up</h1>
+
           <div class="input">
-            <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              required
-            />
-          </div>
-          <div class="input">
-            <input type="text" name="name" placeholder="Name" required />
+            <input type="text" name="name" placeholder="School/Club Name" required />
           </div>
           <div class="input">
             <input type="text" name="email" placeholder="Email" required />
@@ -170,17 +163,17 @@
       const err = document.querySelector(".err");
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
+        console.log("ASJUDBASUYHD")
         // reset errors
         err.textContent = "";
         // get values
-        const username = form.username.value;
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
         try {
           const res = await fetch("/signup", {
             method: "POST",
-            body: JSON.stringify({ username, name, email, password }),
+            body: JSON.stringify({ name, email, password }),
             headers: { "Content-Type": "application/json" },
           });
           const data = await res.json();
@@ -198,7 +191,7 @@
           if (data.errors.password) {
             err.textContent = data.errors.password;
           }
-        } catch (err) {}
+        } catch (err) {console.log(err)}
       });
     </script>
     <script src="/js/mode.js"></script>

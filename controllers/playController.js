@@ -49,6 +49,7 @@ module.exports.leaderboard_get = async (req, res) => {
     //check if user is from VK
     let name;
     name = data[i].name;
+    console.log(data[i])
     {
       if (data[i].level == 10) {
         leaderboard.push({ rank: cnt, name: name, level: "Completed" });

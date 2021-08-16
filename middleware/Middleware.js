@@ -58,8 +58,12 @@ const levelInfo = async (req, res, next) => {
 };
 
 const stopBanned = async (req, res, next) => {
-  if (res.locals.user.isBanned) {
-    res.render("banned");
+  if (res.locals.user) {
+    if (res.locals.user.isBanned) {
+      res.render("banned");
+    } else {
+      next()
+    }
   } else {
     next();
   }

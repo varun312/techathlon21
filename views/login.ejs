@@ -62,7 +62,6 @@
   <body class="dark">
     <script>
       let theme = localStorage.getItem("theme");
-
       if (theme == "light") {
         document.body.classList.add("light");
         theme = localStorage.setItem("theme", "light");
@@ -103,8 +102,26 @@
       </div>
 
       <section class="login">
-        
-        <a class="btn" href="/mslogin">Login with Microsoft<i class="fab fa-microsoft"></i></a>
+        <form action="/signup">
+          <h1>Login</h1>
+          <div class="input">
+            <input type="text" name="email" placeholder="Email" required />
+          </div>
+          <div class="input">
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <h4 class="err"></h4>
+          <button class="btn">login</button>
+
+          <h4 class="sign">
+            Not signed up?&nbsp;<a href="/signup">Sign up here</a>
+          </h4>
+        </form>
         <div class="ban">
           <img src="/assets/cw-logo.png" alt="" />
         </div>
@@ -134,17 +151,13 @@
     <script>
       const form = document.querySelector("form");
       const err = document.querySelector(".err");
-
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
-
         // reset errors
         err.textContent = "";
-
         // get values
         const email = form.email.value;
         const password = form.password.value;
-
         try {
           const res = await fetch("/login", {
             method: "POST",

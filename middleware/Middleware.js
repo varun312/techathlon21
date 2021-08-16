@@ -20,7 +20,6 @@ const requireAuth = (req, res, next) => {
 };
 
 const checkUser = (req, res, next) => {
-  console.log("ASDASDASD")
   const token = req.cookies.jwt;
 
   if (token) {
@@ -31,7 +30,6 @@ const checkUser = (req, res, next) => {
         next();
       } else {
         let user = await User.findById(decodedToken.id);
-        console.log(decodedToken)
         res.locals.user = user;
         next();
       }
@@ -60,7 +58,6 @@ const levelInfo = async (req, res, next) => {
 };
 
 const stopBanned = async (req, res, next) => {
-  console.log("SUJDFBDSBFDSBUFSDBF")
   if (res.locals.user.isBanned) {
     res.render("banned");
   } else {

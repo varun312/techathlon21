@@ -41,10 +41,8 @@ questionSchema.statics.checkAns = async function(number, clientAnswer) {
     const question = await this.findOne({ number });
     if (question) {
       if(question.answer === clientAnswer) {
-        console.log('gg')
         return(true)
       }else {
-        console.log("what a noob")
         return(false);
       }
     }

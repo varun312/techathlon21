@@ -62,7 +62,6 @@
   <body class="dark">
     <script>
       let theme = localStorage.getItem("theme");
-
       if (theme == "light") {
         document.body.classList.add("light");
         theme = localStorage.setItem("theme", "light");
@@ -140,8 +139,6 @@
         <div class="ban">
           <img src="/assets/cw-logo.png" alt="" />
         </div>
-        <a href="/mslogin"><button class="btn"></button></a>
-        
       </section>
     </main>
 
@@ -171,19 +168,15 @@
     <script>
       const form = document.querySelector("form");
       const err = document.querySelector(".err");
-
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
-
         // reset errors
         err.textContent = "";
-
         // get values
         const username = form.username.value;
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-
         try {
           const res = await fetch("/signup", {
             method: "POST",
@@ -191,7 +184,7 @@
             headers: { "Content-Type": "application/json" },
           });
           const data = await res.json();
-          console.log(data);
+          (data);
           if (data.user) {
             console.log("user present");
             $("#redirect")[0].click();

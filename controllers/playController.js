@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const Question = require("../models/Question");
 
 module.exports.play_get = async (req, res, next) => {
-  res.render("play", { isCorrect: false });
+  res.render("timer", { isCorrect: false });
 };
 
 // controller actions
@@ -14,7 +14,6 @@ module.exports.play_post = async (req, res) => {
 
   const isCorr = await Question.checkAns(num, ans);
 
-  console.log(isCorr);
   if (isCorr === false) {
     const log = await Log.create({
       username: res.locals.user.email,
@@ -44,7 +43,6 @@ module.exports.leaderboard_get = async (req, res) => {
     level: "descending",
     lastAnswer: "ascending",
   });
-  console.log(data)
   leaderboard = [];
   cnt = 1;
   for (let i = 0; i < data.length; i++) {

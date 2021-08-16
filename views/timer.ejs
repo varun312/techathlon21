@@ -39,48 +39,16 @@
         src: url(/fonts/Jokerman-Regular.ttf);
         font-weight: normal;
       }
-      .hero {
-        width: 100%;
-        min-height: 60vh;
-        padding: 12vh 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        margin-bottom: 7.7vh;
-      }
-      .heroContent {
-        display: flex;
-        flex-direction: column;
-        width: 40%;
-        height: 90%;
-        justify-content: space-between;
-        align-items: center;
-        text-align: center;
-      }
-      .hero h1 {
-        font-size: 10vw;
-        font-family: bold;
-        margin-bottom: 2vh;
-        width: 110%;
-        height: 14vh;
-      }
-      .hero h3 {
-        font-weight: 100;
-        font-family: light;
-        letter-spacing: 0.5px;
-        line-height: 40px;
-        font-size: var(--text);
-      }
     </style>
 
     <link rel="stylesheet" href="/css/all.css" />
-    <link rel="stylesheet" href="/css/home.css" />
+    <link rel="stylesheet" href="/css/play.css" />
 
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="icon" href="/assets/cw-logo.png" />
     <meta
       name="description"
@@ -108,18 +76,17 @@
       <nav>
         <a href="/" class="navMid">CW</a>
         <div class="navLeft">
-          <a class="navLink" href="/play">Play</a>
+          <a class="navLink" href="/">Home</a>
           <a class="navLink" href="/leaderboard">Leaderboard</a>
-          <a class="navBtn" target="_blank" href="https://discord.gg/tNcZpwTA"
-            >Join Discord</a
-          >
+          <a class="navBtn" target="_blank" href="/techathlon">Join Discord</a>
           <div class="ham">
             <div class="hamLine"></div>
           </div>
         </div>
         <div class="navRight">
-          <i class="fas fa-lightbulb"></i>
-        </div>
+            <i class="fas fa-lightbulb"></i>
+            <a style="margin-left: 1vw;" href="/logout">Logout</a>
+          </div>
       </nav>
 
       <div class="side">
@@ -135,25 +102,29 @@
           >Leaderboard</a
         >
       </div>
-      <section class="hero">
-        <div class="heroContent">
-          <h1>404</h1>
-          <h3>
-            Sorry, we didn't find the page you were looking for<br />Redirecting
-            you to home in 5s...
-          </h3>
-        </div>
-      </section>
+
+      <div class="coutdown">
+        <h1 style="margin-top: 24vh;text-align: center;font-size:3rem;">Techathlon begins in</h1>
+        <h1 style="margin-bottom: 24vh;text-align: center;font-size:3rem;" id="coutdown"></h1>
+            <script>
+            var countDownDate = new Date("August 17, 2021 23:42:00").getTime();
+            var x = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+            var days = Math.floor((distance / 86400 / 1000));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("coutdown").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("coutdown").innerHTML = "EXPIRED";
+            }
+            }, 1000);
+            </script>
+      </div>
     </main>
-
-    <a style="display: none" id="jusNull" href="/"></a>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-      setTimeout(() => {
-        $("#jusNull")[0].click();
-      }, 6000);
-    </script>
 
     <footer>
       <p>
@@ -175,6 +146,7 @@
         </a>
       </div>
     </footer>
+
 
     <script src="/js/mode.js"></script>
   </body>

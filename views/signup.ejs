@@ -102,10 +102,15 @@
       </div>
       <section class="login signup">
         <form action="/signup">
-          <h1>Sign up</h1>
+          <h1>Signa up</h1>
+          <h5>This signup form is only for individual registrations. For school registration dm pr0coder#2007 on discord with your school name</h5> <h6> (spam mat karna bhai ek ghante ke andar de dunga tumhe)</h6>
+          <br>
 
           <div class="input">
             <input type="text" name="name" placeholder="School/Club Name" required />
+          </div>
+          <div class="input">
+            <input type="text" name="discordUsername" placeholder="Discord Username" required />
           </div>
           <div class="input">
             <input type="text" name="email" placeholder="Email" required />
@@ -118,10 +123,6 @@
               required
             />
           </div>
-          <!-- <div class="check">
-            <label for="isDpsVk">Are you from DPS VK?&nbsp;&nbsp;&nbsp;</label>
-            <input type="checkbox" name="isDpsVk" />
-          </div> -->
 
           <h4 class="err"></h4>
           <button class="btn">Sign up</button>
@@ -168,12 +169,13 @@
         err.textContent = "";
         // get values
         const name = form.name.value;
+        const discordUsername = form.discordUsername.value;
         const email = form.email.value;
         const password = form.password.value;
         try {
           const res = await fetch("/signup", {
             method: "POST",
-            body: JSON.stringify({ name, email, password }),
+            body: JSON.stringify({ name, discordUsername, email, password }),
             headers: { "Content-Type": "application/json" },
           });
           const data = await res.json();

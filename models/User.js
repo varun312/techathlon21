@@ -7,6 +7,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  discordUsername: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     required: [true, "Please enter an email"],
@@ -31,6 +35,7 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+
 });
 
 // fire a function before doc saved to db

@@ -54,11 +54,12 @@ module.exports.login_get = (req, res) => {
 };
 
 module.exports.signup_post = async (req, res) => {
-  const {  name, email, password } = req.body;
+  const {  name, email, password, discordUsername } = req.body;
 
   try {
     const user = await User.create({
       name,
+      discordUsername,
       email,
       password,
       level: 0,

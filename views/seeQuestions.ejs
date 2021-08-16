@@ -1,0 +1,13 @@
+<%- include('partials/adminHeader'); -%>
+
+<% for (let i = 0; i < questions.length; i++) { %>
+    <p style="background-color:tomato;">Question Number <%= questions[i].number %></p>
+    <p>imagePath: <%= questions[i].imagePath %></p>
+    <p>pageTitle: <%= questions[i].pageTitle %></p>
+    <p>comments: <%= questions[i].comments %></p>
+    <p>title: <%= questions[i].title %></p>
+    <p>text: <%= questions[i].text %></p>
+    <br><br>
+<% } %>
+
+<%- include('partials/footer'); -%>

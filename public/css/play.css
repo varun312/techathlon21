@@ -1,0 +1,44 @@
+.play {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.btn {
+  background: transparent;
+  cursor: pointer;
+  margin-top: 4vh;
+}
+.input {
+  width: 40%;
+  border: 1px var(--borderWhite) solid;
+  border-radius: 5px;
+  margin: 2vh 0;
+}
+.input input {
+  padding: 1.6vh 1.6vw;
+  font-size: 1vw;
+  width: 100%;
+  background: transparent;
+  border: none;
+}
+input::placeholder {
+  color: var(--borderWhite);
+}
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  margin-bottom: 1vh;
+}
+img {
+  width: 20%;
+  height: auto;
+  border-radius: 10px;
+}

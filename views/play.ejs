@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Warriors - Techathlon</title>
+
+    <link
+      rel="preload"
+      as="font"
+      href="../fonts/AirbnbCerealBold.ttf"
+      type="font/ttf"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      @font-face {
+        font-family: reg;
+        src: url(/fonts/AirbnbCerealBook.ttf);
+        font-weight: normal;
+      }
+      @font-face {
+        font-family: light;
+        src: url(/fonts/AirbnbCerealLight.ttf);
+        font-weight: normal;
+      }
+      @font-face {
+        font-family: med;
+        src: url(/fonts/AirbnbCerealMedium.ttf);
+        font-weight: normal;
+      }
+      @font-face {
+        font-family: bold;
+        src: url(/fonts/AirbnbCerealBold.ttf);
+        font-weight: normal;
+      }
+      @font-face {
+        font-family: logo;
+        src: url(/fonts/Jokerman-Regular.ttf);
+        font-weight: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="/css/all.css" />
+    <link rel="stylesheet" href="/css/play.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="icon" href="/assets/cw-logo.png" />
+    <meta
+      name="description"
+      content="We are the Code Warriors, the computer club of DPS Vasant Kunj. We're a team of technology addicts, our skills ranging from gaming to designing"
+    />
+    <meta name="author" content="Kevin" />
+    <meta
+      name="keywords"
+      content="code, code warriors, code warrior, cw, code wars, dpsvk, cryptic, hunt, cryptic hunt, code warriors intra, intra, cryptic intra, cryptic hunt intra code warriors"
+    />
+  </head>
+  <body class="dark">
+    <script>
+      let theme = localStorage.getItem("theme");
+
+      if (theme == "light") {
+        document.body.classList.add("light");
+        theme = localStorage.setItem("theme", "light");
+      } else {
+        document.body.classList.remove("light");
+        theme = localStorage.setItem("theme", "dark");
+      }
+    </script>
+
+    <main>
+      <nav>
+        <a href="/" class="navMid">CW</a>
+        <div class="navLeft">
+          <a class="navLink" href="/">Home</a>
+          <a class="navLink" href="/leaderboard">Leaderboard</a>
+          <a class="navBtn" target="_blank" href="/techathlon">Join Discord</a>
+          <div class="ham">
+            <div class="hamLine"></div>
+          </div>
+        </div>
+        <div class="navRight">
+          <i class="fas fa-lightbulb"></i>
+          <a class="navBtn" href="/logout">Logout</a> %>
+        </div>
+      </nav>
+
+      <div class="side">
+        <a
+          style="--navD: 0.4s"
+          class="navBtn"
+          href="https://discord.gg/aztyaceuY2"
+          target="_blank"
+          >Join Discord</a
+        >
+        <a style="--navD: 0.44s" class="navLink" href="/play">Play</a>
+        <a style="--navD: 0.44s" class="navLink" href="/leaderboard"
+          >Leaderboard</a
+        >
+      </div>
+
+      <div class="play">
+        <h1 id="lvlnum"></h1>
+        <h1 id="quesTitle"></h1>
+        <h1 id="text"></h1>
+        <img src="" alt="" id="imagePath" />
+
+        <form action="/play" method="POST" id="form">
+          <div class="input">
+            <input
+              class="answer string"
+              type="text"
+              placeholder="Answer"
+              name="answer"
+              autocomplete="off"
+              id="answer"
+            />
+          </div>
+          <button class="btn" form="form">Submit</button>
+        </form>
+      </div>
+    </main>
+
+    <footer>
+      <p>
+        <span id="titleF"></span
+        ><span id="cursorF" class="cursor footcur"></span>
+      </p>
+      <div class="footSocial">
+        <a href="https://www.facebook.com/codewarriors/">
+          <i class="fab fa-facebook-square"></i>
+        </a>
+        <a href="https://www.instagram.com/codewarriors42/?hl=en">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://github.com/codewarriors42">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.behance.net/codewarriors">
+          <i class="fab fa-behance"></i>
+        </a>
+      </div>
+    </footer>
+
+    <script src="/js/mode.js"></script>
+    <script>
+      const form = document.querySelector("form");
+      const answerBox = document.querySelector("form #answer");
+      const answerError = document.querySelector("form .error");
+
+      function answerSubmit() {
+        if (answerBox.value.length < 1) {
+          answerError.innerHTML = "Please enter an answer";
+          answerBox.classList.add("errorInput");
+        } else {
+          document.getElementById("form").submit();
+        }
+      }
+      answerBox.addEventListener("input", () => {
+        let input = answerBox.value;
+        let output = "";
+        if (input.length > 0) {
+          for (let i = 0; i < input.length; i++) {
+            if (input.charAt(i) != " ") {
+              output += input.charAt(i).toLowerCase();
+            }
+          }
+          answerBox.value = output;
+        }
+      });
+      answerBox.addEventListener("focus", () => {
+        if (answerBox.classList.contains("errorInput")) {
+          answerBox.classList.remove("errorInput");
+          answerError.innerHTML = "&nbsp;";
+        }
+      });
+      answerBox.addEventListener("keydown", (e) => {
+        if (e.keyCode == 13) {
+          if (answerBox.value.length == 0) {
+            e.preventDefault();
+          }
+        }
+      });
+
+      window.onload = function () {
+        var reloading = sessionStorage.getItem("reloading");
+        if (reloading) {
+          sessionStorage.removeItem("reloading");
+          Toastify({
+            text: "Correct Answer!",
+          }).showToast();
+        }
+      };
+
+      const lvlnum = document.getElementById("lvlnum");
+      const quesTitle = document.getElementById("quesTitle");
+      const text = document.getElementById("text");
+      const imagePath = document.getElementById("imagePath");
+      async function getQues() {
+        const res = await fetch("/getQuestion", {
+          method: "GET",
+        });
+        data = await res.json();
+        lvlnum.innerHTML = `Level ${data.question.number}`;
+        quesTitle.innerHTML = data.question.quesTitle;
+        text.innerHTML = data.question.text;
+        document.title = data.question.pageTitle;
+        const c = document.createComment(data.question.comments);
+        document.body.appendChild(c);
+        try {
+          imagePath.src = data.question.imagePath;
+        } catch (err) {}
+      }
+
+      getQues();
+
+      const ansError = document.querySelector(".answer.error");
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const answer = document.querySelector(".answer.string").value;
+
+        try {
+          const res = await fetch("/play", {
+            method: "POST",
+            body: JSON.stringify({ answerString: answer }),
+            headers: { "Content-Type": "application/json" },
+          });
+          const data = await res.json();
+          if (!data.correct) {
+            Toastify({
+              backgroundColor: "tomato",
+              text: "Wrong Answer",
+            }).showToast();
+          } else {
+            sessionStorage.setItem("reloading", "true");
+            document.location.reload();
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    </script>
+    <% if (question.comments !== "") { %>
+    <!<%= question.comments %>> <% } %>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+  </body>
+</html>

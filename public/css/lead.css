@@ -1,0 +1,29 @@
+.ldb {
+  min-height: 69vh;
+  margin-top: 4vh;
+}
+table {
+  width: 100%;
+  text-align: center;
+  font-size: 1vw;
+  border: 4px var(--borderWhite) solid;
+  border-collapse: collapse;
+  margin-bottom: 5vh;
+}
+th,
+td {
+  padding: 1.6vh 0;
+  border-right: 2px solid var(--white);
+}
+thead {
+  border-bottom: 3px var(--borderWhite) solid;
+}
+thead th {
+  font-family: med;
+}
+tbody tr {
+  border-bottom: 1px var(--borderWhite) solid;
+}
+tbody td {
+  font-family: light;
+}

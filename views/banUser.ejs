@@ -1,0 +1,49 @@
+<%- include('partials/adminHeader'); -%>
+
+<form action="/koshan" method="POST">
+  <h2>Ban User</h2>
+  <label for="username">Username</label>
+  <input type="text" name="username"  />
+  <button type="submit">Ban</button>
+</form>
+
+<%- include('partials/footer'); -%>
+
+<script>
+  const form = document.querySelector('form');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const username = form.username.value;
+
+    try {
+      const res = await fetch('/banz', { 
+        method: 'POST', 
+        body: JSON.stringify({ username}),
+        headers: {'Content-Type': 'application/json'}
+      });
+      const data = await res.json();
+      if (data.err) {
+        Toastify({
+        backgroundColor: "linear-gradient(315deg, #3f0d12 0%, #a71d31 74%)",
+        text: data.err,
+        }).showToast();
+      }else {
+        Toastify({
+        text: "Banned Successfully",
+        }).showToast();
+      }
+    }
+    catch (err) {
+      Toastify({
+        text: "Was not Banned Successfully",
+        }).showToast();
+      console.log(err);
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+
+<%- include('partials/footer'); -%>

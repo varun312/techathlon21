@@ -1,0 +1,83 @@
+<%- include('partials/adminHeader'); -%>
+
+<form action="/koshan" method="POST">
+  <h2>Create Koshan</h2>
+  <label for="number">Question Number</label>
+  <input type="number" min="0" name="number" />
+  <div class="number error"></div>
+  <label for="quesTitle">Question Title</label>
+  <input type="text" name="quesTitle" />
+  <label for="pageTitle">Page Title</label>
+  <input type="text" name="pageTitle" />
+  <label for="quesText">Question Text</label>
+  <input type="text" name="quesText" />
+  <label for="imagePath">Image(name)</label>
+  <input type="text" name="imagePath" />
+  <label for="comments">Comments</label>
+  <input type="text" name="comments" />
+  <label for="answer">Answer</label>
+  <input type="text" name="answer" />
+  <button type="submit">Create</button>
+</form>
+
+<%- include('partials/footer'); -%>
+
+<script>
+  const form = document.querySelector("form");
+  const numberError = document.querySelector(".number.error");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    numberError.textContent = "";
+
+    const number = form.number.value;
+    const quesTitle = form.quesTitle.value;
+    const pageTitle = form.pageTitle.value;
+    const quesText = form.quesText.value;
+    const imagePath = form.imagePath.value;
+    const comments =
+      form.comments.value === null
+        ? (form.comments.value = "")
+        : form.comments.value;
+    const answer = form.answer.value;
+
+    try {
+      const res = await fetch("/koshan", {
+        method: "POST",
+        body: JSON.stringify({
+          number,
+          quesTitle,
+          quesText,
+          imagePath,
+          pageTitle,
+          comments,
+          answer,
+        }),
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await res.json();
+      if (data.err === "duplicate") {
+        console.log("done");
+        Toastify({
+          backgroundColor: "linear-gradient(315deg, #3f0d12 0%, #a71d31 74%)",
+          text: "Enter a unique level number",
+        }).showToast();
+      } else {
+        console.log("done");
+        Toastify({
+          text: "Created Successfully",
+        }).showToast();
+      }
+    } catch (err) {
+      Toastify({
+        text: "Was not Created Successfully",
+      }).showToast();
+      console.log(err);
+    }
+  });
+</script>
+
+<script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/toastify-js"
+></script>

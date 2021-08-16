@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Code Warriors - Techathlon</title>
+
+    <link
+      rel="preload"
+      as="font"
+      href="../fonts/AirbnbCerealBold.ttf"
+      type="font/ttf"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      @font-face {
+        font-family: reg;
+        src: url(/fonts/AirbnbCerealBook.ttf);
+        font-weight: normal;
+      }
+      @font-face {
+        font-family: light;
+        src: url(/fonts/AirbnbCerealLight.ttf);
+        font-weight: normal;
+      }
+      @font-face {
+        font-family: med;
+        src: url(/fonts/AirbnbCerealMedium.ttf);
+        font-weight: normal;
+      }
+      @font-face {
+        font-family: bold;
+        src: url(/fonts/AirbnbCerealBold.ttf);
+        font-weight: normal;
+      }
+      @font-face {
+        font-family: logo;
+        src: url(/fonts/Jokerman-Regular.ttf);
+        font-weight: normal;
+      }
+    </style>
+
+    <link rel="stylesheet" href="/css/all.css" />
+    <link rel="stylesheet" href="/css/login.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="icon" href="/assets/cw-logo.png" />
+    <meta
+      name="description"
+      content="We are the Code Warriors, the computer club of DPS Vasant Kunj. We're a team of technology addicts, our skills ranging from gaming to designing"
+    />
+    <meta name="author" content="Kevin" />
+    <meta
+      name="keywords"
+      content="code, code warriors, code warrior, cw, code wars, dpsvk, cryptic, hunt, cryptic hunt, code warriors intra, intra, cryptic intra, cryptic hunt intra code warriors"
+    />
+  </head>
+  <body class="dark">
+    <script>
+      let theme = localStorage.getItem("theme");
+
+      if (theme == "light") {
+        document.body.classList.add("light");
+        theme = localStorage.setItem("theme", "light");
+      } else {
+        document.body.classList.remove("light");
+        theme = localStorage.setItem("theme", "dark");
+      }
+    </script>
+
+    <main>
+      <nav>
+        <a href="/" class="navMid">CW</a>
+        <div class="navLeft">
+          <a class="navLink" href="/play">Play</a>
+          <a class="navLink" href="/leaderboard">Leaderboard</a>
+          <a class="navBtn" target="_blank" href="/techathlon">Join Discord</a>
+          <div class="ham">
+            <div class="hamLine"></div>
+          </div>
+        </div>
+        <div class="navRight">
+          <i class="fas fa-lightbulb"></i>
+        </div>
+      </nav>
+
+      <div class="side">
+        <a
+          style="--navD: 0.4s"
+          class="navBtn"
+          href="https://discord.gg/aztyaceuY2"
+          target="_blank"
+          >Join Discord</a
+        >
+        <a style="--navD: 0.44s" class="navLink" href="/play">Play</a>
+        <a style="--navD: 0.44s" class="navLink" href="/leaderboard"
+          >Leaderboard</a
+        >
+      </div>
+
+      <section class="login">
+        
+        <a class="btn" href="/mslogin">Login with Microsoft<i class="fab fa-microsoft"></i></a>
+        <div class="ban">
+          <img src="/assets/cw-logo.png" alt="" />
+        </div>
+      </section>
+    </main>
+    <footer>
+      <p>
+        <span id="titleF"></span
+        ><span id="cursorF" class="cursor footcur"></span>
+      </p>
+      <div class="footSocial">
+        <a href="https://www.facebook.com/codewarriors/">
+          <i class="fab fa-facebook-square"></i>
+        </a>
+        <a href="https://www.instagram.com/codewarriors42/?hl=en">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://github.com/codewarriors42">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.behance.net/codewarriors">
+          <i class="fab fa-behance"></i>
+        </a>
+      </div>
+    </footer>
+
+    <script>
+      const form = document.querySelector("form");
+      const err = document.querySelector(".err");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // reset errors
+        err.textContent = "";
+
+        // get values
+        const email = form.email.value;
+        const password = form.password.value;
+
+        try {
+          const res = await fetch("/login", {
+            method: "POST",
+            body: JSON.stringify({ email, password }),
+            headers: { "Content-Type": "application/json" },
+          });
+          const data = await res.json();
+          if (data.errors) {
+            console.log(data.errors);
+            err.textContent = data.errors.email || data.errors.password;
+          }
+          if (data.user) {
+            location.assign("/");
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    </script>
+    <script src="/js/mode.js"></script>
+  </body>
+</html>

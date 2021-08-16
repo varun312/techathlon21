@@ -1,0 +1,80 @@
+.login {
+  display: flex;
+}
+form,
+.ban {
+  width: 50%;
+  min-height: 70vh;
+}
+.ban {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+img {
+  width: 40%;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+form h1 {
+  font-family: bold;
+  font-size: 3vw;
+  margin-bottom: 3vh;
+}
+form button {
+  cursor: pointer;
+  background: transparent;
+  margin-top: 6vh;
+}
+.input {
+  width: 70%;
+  border: 1px var(--borderWhite) solid;
+  border-radius: 5px;
+  margin-bottom: 2vh;
+}
+.input input {
+  padding: 1.6vh 1.6vw;
+  font-size: 1vw;
+  width: 100%;
+  background: transparent;
+  border: none;
+}
+input::placeholder {
+  color: var(--borderWhite);
+}
+h4 {
+  font-size: 1vw;
+  color: var(--borderWhite);
+}
+.sign {
+  margin-top: 2vh;
+}
+.sign a {
+  text-decoration: underline;
+}
+.check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.check input {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: 2px solid var(--borderWhite);
+  padding: 0.8vh;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.check input:checked {
+  background: var(--borderWhite);
+}
+
+.signup {
+  height: 80vh;
+}

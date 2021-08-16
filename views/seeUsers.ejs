@@ -1,0 +1,12 @@
+<%- include('partials/adminHeader'); -%>
+
+<% for (let i = 0; i < users.length; i++) { %>
+    <p style="background-color:tomato;">Level <%= users[i].level %></p>
+    <p>name: <%= users[i].name %></p>
+    <p>email: <%= users[i].email %></p>
+    <p>isBanned: <%= users[i].isBanned %></p>
+    <p>lastAnswer: <%= users[i].lastAnswer %></p>
+    <br><br>
+<% } %>
+
+<%- include('partials/footer'); -%>

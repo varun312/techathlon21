@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/all.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body class="dark">
+    <script>
+      let theme = localStorage.getItem("theme");
+
+      if (theme == "light") {
+        document.body.classList.add("light");
+        theme = localStorage.setItem("theme", "light");
+      } else {
+        document.body.classList.remove("light");
+        theme = localStorage.setItem("theme", "dark");
+      }
+    </script>
+
+    <main>
+      <nav>
+        <div class="navLeft">
+          <a class="navBtn" target="_blank" href="https://discord.gg/aztyaceuY2"
+            >Join Discord</a
+          >
+          <a class="navLink" href="/blogs">Blog</a>
+          <a class="navLink" href="/archives/creative">Archive</a>
+          <a class="navLink" href="/resources">Resources</a>
+          <div class="ham">
+            <div class="hamLine"></div>
+          </div>
+        </div>
+        <a href="/" class="navMid">CW</a>
+        <div class="navRight">
+          <a class="navLink active" href="/">Home</a>
+          <a class="navLink" href="/members">Members</a>
+          <a class="navLink" href="/contacts">Contact</a>
+          <a class="navLink" href="/alumni">Alumni</a>
+          <i class="fas fa-lightbulb"></i>
+        </div>
+      </nav>

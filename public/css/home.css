@@ -1,0 +1,68 @@
+.hero {
+  height: 40vh;
+  display: flex;
+  margin-top: 5vh;
+}
+.heroLeft,
+.heroRight {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+h1 {
+  font-size: 2vw;
+  font-family: bold;
+}
+.hero p {
+  margin: 3vh 0;
+  line-height: 3.3vh;
+  font-size: 1vw;
+}
+.heroBtns {
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+}
+.heroBtns .btn {
+  width: 45%;
+  padding: 2vh 0;
+}
+.heroRight {
+  justify-content: center;
+  align-items: center;
+}
+.heroRight img {
+  width: 40%;
+}
+
+/* Rules */
+.rules {
+  padding-right: 30%;
+  margin: 6vh 0;
+  margin-bottom: 10vh;
+}
+.rules h1 {
+  position: relative;
+  display: inline;
+  width: auto;
+}
+.rules h1::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--white);
+}
+.rules ul {
+  padding: 0 1vw;
+  margin: 3vh 0;
+  line-height: 3.3vh;
+  font-size: 1.1vw;
+}
+.rules li {
+  margin-bottom: 2.6vh;
+}

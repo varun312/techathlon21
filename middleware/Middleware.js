@@ -41,20 +41,24 @@ const checkUser = (req, res, next) => {
 };
 
 const levelInfo = async (req, res, next) => {
-  if (res.locals.user.level === 2) {
-    res.locals.question = {}
-    res.locals.question.quesTitle = "gg";
-    res.locals.question.text = "gg";
-    res.locals.question.pageTitle = "gg";
-    res.locals.question.comments = "gg";
-  } else {
-    const levInfo = await Question.findOne(
-      { number: res.locals.user.level },
-      { answer: 0, _id: 0 }
-    );
-    res.locals.question = levInfo;
+  if (res.locals.user) {
+    if (res.locals.user.level === 10) {
+      res.locals.question = {}
+      res.locals.question.quesTitle = "gg";
+      res.locals.question.text = "gg";
+      res.locals.question.pageTitle = "gg";
+      res.locals.question.comments = "gg";
+    } else {
+      const levInfo = await Question.findOne(
+        { number: res.locals.user.level },
+        { answer: 0, _id: 0 }
+      );
+      res.locals.question = levInfo;
+    }
+    next();
+  }else {
+    res.redirect('/login')
   }
-  next();
 };
 
 const stopBanned = async (req, res, next) => {
@@ -65,7 +69,7 @@ const stopBanned = async (req, res, next) => {
       next()
     }
   } else {
-    next();
+    res.redirect('/login')
   }
 };
 

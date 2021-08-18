@@ -43,33 +43,62 @@ module.exports.play_post = async (req, res) => {
 };
 
 module.exports.leaderboard_get = async (req, res) => {
-  data = await User.find({}, "name level").sort({
-    level: "descending",
-    lastAnswer: "ascending",
+  // let data = await User.find({}, "name level").sort({
+  //   level: "descending",
+  //   lastAnswer: "ascending",
+  // });
+  let users = await User.find({ isBanned: false }).sort({
+    level: -1,
   });
+
+  let logs = await Log.find({ status: true }).sort({ level: -1, time: 1 });
+
+  let data = [];
+
+  for (let log of logs) {
+    for (let user of users) {
+      if (user.email === log.username) {
+        data.push(user);
+      }
+    }
+  }
+
+  let zeroLevelUsers = await User.find({ level: 0 });
+
+  for (let user of zeroLevelUsers) {
+    if (!data.includes(user)) data.push(user);
+  }
+
+  let kevin = await User.find({ name: "Kevin" });
+  data.unshift(kevin[0]);
+
+  console.log(data);
+
   leaderboard = [];
   cnt = 1;
   for (let i = 0; i < data.length; i++) {
     //check if user is from VK
     let name;
     name = data[i].name;
-    console.log(data[i])
     {
       if (data[i].level == 10) {
         leaderboard.push({ rank: cnt, name: name, level: "Completed" });
-      } else {
+      } else if (data[i].name !== "hm") {
         leaderboard.push({
           rank: cnt,
-          name: name,
+          name: name
+            .toLowerCase()
+            .split(" ")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" "),
           level: data[i].level,
         });
       }
-      cnt += 1;
+      cnt++;
     }
   }
   res.render("leaderboard", { leaderboard: leaderboard });
 };
-
 module.exports.question_get = async (req, res) => {
   res.status(201).json({ question: res.locals.question });
 };

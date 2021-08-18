@@ -13,7 +13,7 @@ router.get('/play/kaala', (req, res) => {res.render('kaala')});
 router.get('/play/4runner', (req, res) => {res.render('4runner')});
 router.get('/play/thelibrarian', (req, res) => {res.redirect('https://pastebin.com/6KGNd3qE')});
 router.get('/play/david', (req, res) => {res.render('david')});
-router.get('/play/quicksort42', (req, res) => {res.redirect(' https://forms.gle/fiUaspM69eNtvb4a7')});
+router.get('/play/quicksort42', (req, res) => {res.redirect('https://forms.gle/KexFVRKQh7vA479CA ')});
 router.get('/leaderboard', playController.leaderboard_get);
 router.get('/getQuestion', requireAuth, stopBanned, levelInfo, playController.question_get);
 

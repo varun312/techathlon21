@@ -39,10 +39,10 @@ const userSchema = new mongoose.Schema({
 });
 
 // fire a function before doc saved to db
-userSchema.pre("save", async function (next) {
-  this.password = await bcrypt.hash(this.password, 10);
-  next();
-});
+// userSchema.pre("save", async function (next) {
+//   this.password = await bcrypt.hash(this.password, 10);
+//   next();
+// });
 
 // static method to login user
 userSchema.statics.login = async function (email, password) {

@@ -83,7 +83,7 @@ module.exports.leaderboard_get = async (req, res) => {
     name = data[i].name;
     {
       if (data[i].level == 9) {
-        leaderboard.push({ rank: cnt, name: name, level: "completed" });
+        leaderboard.push({ rank: cnt, name: name, level: "fin" });
       } else if (data[i].name !== "hm") {
         leaderboard.push({
           rank: cnt,
